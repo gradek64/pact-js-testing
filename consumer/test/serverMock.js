@@ -2,6 +2,11 @@
 const { server } = require('../../provider/provider.js')
 const port = process.env.API_PORT || 9123
 
+const requestMatchers = {
+    method: 'GET',
+    path: '/provider'
+}
+
 const serverMessage = "Created './standalone/darwin-1.61.1/bin/pact-mock-service service --consumer 'consumer' --cors 'true' --pact_dir '/Users/gilgrz/pact-contract-testing/pact-example/pacts' --host '127.0.0.1' --log '/Users/gilgrz/pact-contract-testing/pact-example/logs/mockserver-integration.log' --pact-file-write-mode 'update' --port '8001' --provider 'provider' --pact_specification_version '2'' process with PID: 4079"
 const pact = () => {
 
@@ -22,8 +27,20 @@ const pact = () => {
       })
          }
     const verify = () => {};
-    const addInteraction = () => {};
-    const finalize = () => {};
+    const addInteraction = (spec) => {
+      this.interacion = spec.withRequest
+    }
+    const finalize = () => {
+     /* console.log('this.interacion.method===requestMatchers.method',this.interacion.method===requestMatchers.method);
+      console.log('this.interacion.path === requestMatchers.path', this.interacion.path === requestMatchers.path);
+      console.log('this.interacion',this.interacion);
+      console.log('requestMatchers',requestMatchers);*/
+      /*
+        *@at the moment only works for the last interaction since is overideen in before() test
+        *@
+      */
+      return this.interacion.method===requestMatchers.method && this.interacion.path === requestMatchers.path;
+    };
 
   
     return {
