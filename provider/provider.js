@@ -17,6 +17,13 @@ const dataStore = {
   count: 1000
 }
 
+server.get('/products', (req, res) => {
+    const validDate = req.query.validDate
+     if (!validDate) {
+    res.status(400)
+    res.json({ error: 'validDate is required' });
+  }
+});
 server.get('/provider', (req, res) => {
   const validDate = req.query.validDate
   const dateRegex = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}/
