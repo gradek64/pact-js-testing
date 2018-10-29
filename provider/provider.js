@@ -18,21 +18,20 @@ server.use((req, res, next) => {
 const dataStore = {
   count: 1000
 }
-//HOME page
+//HOME page route
 server.get('/', (req, res) => {
     res.header('Content-Type', 'text/html; charset=utf-8')
     res.render('index',{message:`go to http://localhost:${port}/provider order to test your routes:`});
 });
+
+// PRODUCTS route
 server.get('/products', (req, res) => {
-    const validDate = req.query.validDate
-     if (!validDate) {
-    res.status(400);
-    res.json({ error: 'validDate is required' });
-  }
+    res.json({ info: 'this route is not in the pact' });
 });
+
+
 server.get('/provider', (req, res) => {
   const validDate = req.query.validDate
-  const dateRegex = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}/
 
   if (!validDate) {
     res.status(400);
