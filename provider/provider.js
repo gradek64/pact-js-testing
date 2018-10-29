@@ -21,7 +21,7 @@ const dataStore = {
 //HOME page
 server.get('/', (req, res) => {
     res.header('Content-Type', 'text/html; charset=utf-8')
-    res.render('index',{message:"got to /provider  to test your roures"});
+    res.render('index',{message:`go to http://localhost:${port}/provider order to test your routes:`});
 });
 server.get('/products', (req, res) => {
     const validDate = req.query.validDate
