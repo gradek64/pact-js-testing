@@ -72,6 +72,8 @@ describe('Pact with Our Provider', () => {
          // expect(response).to.eventually.have.property('date', date).notify(done)
          //CHANGE
           expect(response).to.eventually.have.property('date').notify(done)
+          expect(provider.finalize()).to.be.true;
+
         })
 
         it('should validate the interactions and create a contract', () => {
@@ -102,7 +104,9 @@ describe('Pact with Our Provider', () => {
         })
 
         it('can handle an invalid date parameter', (done) => {
-          expect(fetchProviderData('This is not a date')).to.eventually.be.rejectedWith(Error).notify(done)
+          expect(fetchProviderData('This is not a date')).to.eventually.be.rejectedWith(Error).notify(done);
+          expect(provider.finalize()).to.be.true;
+
         })
 
         it('should validate the interactions and create a contract', () => {
@@ -130,7 +134,9 @@ describe('Pact with Our Provider', () => {
         })
 
         it('can handle missing date parameter', (done) => {
-          expect(fetchProviderData(null)).to.eventually.be.rejectedWith(Error).notify(done)
+          expect(fetchProviderData(null)).to.eventually.be.rejectedWith(Error).notify(done);
+          expect(provider.finalize()).to.be.true;
+
         })
 
         it('should validate the interactions and create a contract', () => {

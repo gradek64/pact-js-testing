@@ -54,7 +54,7 @@ const pact = () => {
 
 const Matchers = {
       somethingLike:(spec) => spec,
-      term:(spec) => spec
+      term:(spec) => spec,
     }
 
 

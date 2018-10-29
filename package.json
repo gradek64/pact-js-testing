@@ -8,7 +8,9 @@
     "test:consumer": "./node_modules/.bin/mocha --timeout 100000 consumer/test/consumer.spec.js",
     "test:pact:consumer": "./node_modules/.bin/mocha --timeout 10000 consumer/test/consumerPact.spec.js",
     "test:pact:publish": "node consumer/test/publish.js",
-    "test:pact:provider": "./node_modules/.bin/mocha --timeout 10000 provider/test/providerPact.spec.js"
+    "test:pact:provider": "./node_modules/.bin/mocha --timeout 10000 provider/test/providerPact.spec.js",
+    "publish:pact": "curl -XPUT -H \"Content-Type: application/json\" -d@pacts/our_little_consumer-our_provider.json http://127.0.0.1:80/pacts/provider/Our%20Provider/consumer/Our%20Little%20Consumer/version/1.0.0",
+    "delete:pact": "curl -X DELETE http://127.0.0.1:80/pacticipants/Our%20Little%20Consumer"
   },
   "repository": {
     "type": "git",
